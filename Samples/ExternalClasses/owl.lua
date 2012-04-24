@@ -1,1 +1,1 @@
-/Users/jonbeebe/Development/Projects/owl/owl.lua
+../../owl.lua
