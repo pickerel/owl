@@ -9,6 +9,11 @@ Dog.private.ageMultiplier = 7
 Dog.name = "Unnamed Dog"
 Dog.age = 5	-- in human years
 
+-- constructor
+function Dog:init( params )
+	print( "Dog instance, " .. self.id .. ", created with var: " .. params.var1 )
+end
+
 -- public methods
 function Dog:ageInDogYears()
 	return self.age * Dog.private.ageMultiplier

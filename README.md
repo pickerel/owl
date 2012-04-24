@@ -1,7 +1,7 @@
-OWL
-===
+owl (Objects with Lua)
+======================
 
-**Objects with Lua:** Object-oriented programming in Lua for Corona SDK.
+Object-oriented programming in Lua. Also compatible with Corona SDK (allows classes based on display objects), but can also be used with Lua (no Corona SDK).
 
 * **Module:** betterclass.lua
 * **Version:** 1.0.0
