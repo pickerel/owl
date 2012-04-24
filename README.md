@@ -1,7 +1,7 @@
 OWL
 ===
 
-**Objects-With-Lua:** Object-oriented programming in Lua for Corona SDK.
+**Objects with Lua:** Object-oriented programming in Lua for Corona SDK.
 
 * **Module:** betterclass.lua
 * **Version:** 1.0.0
