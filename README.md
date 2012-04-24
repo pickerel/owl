@@ -18,9 +18,14 @@ Object-oriented programming in Lua for Corona SDK.
 * Private class data via .private table of class.
 * Multi-level inheritance.
 
+### Important Notes
+
+* Object instances have two reserved properties (cannot read or write): **private** and **display_obj**
+* Object instances have three read-only properties: **className**, **superClass**, and **callbackProperties**
+
 ### Usage
 
-For examples of usage from basic to advanced, see included sample projects (should run as-is in the Corona Simulator).
+For examples of usage from basic to advanced, see included sample projects (which should run as-is in the Corona Simulator) &mdash; COMING SOON.
 
 
 ### MIT License

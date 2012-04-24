@@ -74,6 +74,16 @@ local function instance_of( self, className )
 	return self.className == className
 end
 
+local function addPropertyCallback( self, propertyName, callback )
+	if not callback then return; end
+	self.callbackProperties[propertyName] = callback
+end
+
+local function removePropertyCallback( self, propertyName )
+	if not propertyName then return; end
+	self.callbackProperties[propertyName] = nil
+end
+
 
 --
 --
@@ -149,6 +159,8 @@ function class.new( params )
 	c.is_a = is_a
 	c.kind_of = is_a
 	c.instance_of = instance_of
+	c.addPropertyCallback = addPropertyCallback
+	c.removePropertyCallback = removePropertyCallback
 
 	-- register the class and return it
 	registered[name] = c
@@ -160,7 +172,7 @@ function class.remove( name )
 	registered[name] = nil
 end
 
-function class.instance( params, arg2 )
+function class.instance( params )
 	local params = params or {}
 
 	-- extract function params
@@ -195,6 +207,7 @@ function class.instance( params, arg2 )
 
 	-- set property update calback (if specified; or will inherit from base_class)
 	if callback then obj.callback = callback; end
+	obj.callbackProperties = {}
 
 	-- proxy and metatable setup
 	local _t = obj
@@ -217,8 +230,20 @@ function class.instance( params, arg2 )
 		end,
 
 		__newindex = function(tb,k,v)
-			if k == "superClass" or k == "className" then return; end
+			if k == "superClass" or k == "className" or k == "callbackProperties" then return; end
 
+			if _t.callbackProperties[k] and type(_t.callbackProperties[k]) == "function" then
+				local event =
+				{
+					name="propertyUpdate",
+					target=tb,
+					key=k,
+					value=v
+				}
+				local callback = _t.callbackProperties[k]
+				callback( _t, event )
+
+			--[[
 			if _t.callback and type(_t.callback) == "function" then
 				local event =
 				{
@@ -228,6 +253,7 @@ function class.instance( params, arg2 )
 					value=v
 				}
 				_t:callback( event )
+			--]]
 			else
 				_t[k] = v
 			end
