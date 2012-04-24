@@ -39,7 +39,20 @@ end
 local function extendClass( name, class )
 	local class_mt = { __index = class }
 	local private_mt = { __index = class.private }
-	return setmetatable( { className=name, superClass=class, private=setmetatable( {}, private_mt ) }, class_mt )
+
+	local c =
+	{
+		className=name,
+		superClass=class,
+		private=setmetatable( {}, private_mt )
+	}
+
+	if class.display_obj then
+		local display_obj_mt = { __index = class.display_obj }
+		c.display_obj = setmetatable( {}, display_obj_mt )
+	end
+
+	return setmetatable( c, class_mt )
 end
 
 
@@ -121,6 +134,18 @@ function class.new( params )
 	local c
 	if parent_class then
 		c = extendClass( name, parent_class )
+		
+		-- instances may optionally have different display object properties
+		if image or (createFunction and type(createFunction) == "function") then
+			c.display_obj =
+			{
+				image = image,
+				width = width,
+				height = height,
+				base_dir = base_dir,
+				createFunction = create_object
+			}
+		end
 	else
 		local proxy = {}
 		c = {}
@@ -242,18 +267,6 @@ function class.instance( params )
 				}
 				local callback = _t.callbackProperties[k]
 				callback( _t, event )
-
-			--[[
-			if _t.callback and type(_t.callback) == "function" then
-				local event =
-				{
-					name="propertyUpdate",
-					target=tb,
-					key=k,
-					value=v
-				}
-				_t:callback( event )
-			--]]
 			else
 				_t[k] = v
 			end
