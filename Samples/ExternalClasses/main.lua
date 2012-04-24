@@ -13,7 +13,7 @@ puppy:translate( display.contentCenterX*0.5, display.contentCenterY*0.5 )
 puppy.name = "Spot"
 
 -- print out the age of the puppy (default PuppyClass age is 6 months)
-print( puppy.name .. " (" .. puppy.className .. ") is about " ..
-	puppy:ageInDogYears() .. " years old in dog (" ..
-		puppy.superClass.className .. ") years." )
+print( puppy.name .. " is a " .. puppy.className .. ", which a kind of "..
+	puppy.superClass.className .. ", is about " .. puppy:ageInDogYears() ..
+		" years old in dog years." )
 

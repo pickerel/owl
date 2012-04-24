@@ -1,9 +1,9 @@
-owl (Objects with Lua)
+Objects with Lua (owl)
 ======================
 
-Object-oriented programming in Lua. Also compatible with Corona SDK (allows classes based on display objects), but can also be used with Lua (no Corona SDK).
+Easy object-oriented programming in Lua. Compatible with Corona SDK display objects, as well as Lua-only scripts.
 
-* **Module:** betterclass.lua
+* **Module:** owl.lua
 * **Version:** 1.0.0
 * **License:** MIT (see below)
 * **Author:** Jonathan Beebe
@@ -11,9 +11,9 @@ Object-oriented programming in Lua. Also compatible with Corona SDK (allows clas
 
 ### Features
 
-* Constructor/initializers
+* Constructor/initializers via init() method of class (or custom per-instance callbacks)
 * Classes for display objects, as well as non-display objects.
-* Fast creation of new object instances from specified parent class.
+* Fast creation of new object instances from specified parent class.ß
 * Create metamethods for objects easily with property callbacks.
 * Familiar OOP methods: is_a(), kind_of(), instance_of()
 * Private class data via .private table of class.
@@ -26,7 +26,7 @@ Object-oriented programming in Lua. Also compatible with Corona SDK (allows clas
 
 ### Usage
 
-For examples of usage from basic to advanced, see included sample projects (which should run as-is in the Corona Simulator) &mdash; COMING SOON.
+For examples of usage from basic to advanced, see included sample projects (which should run as-is in the Corona Simulator). More coming soon.
 
 
 ### MIT License
