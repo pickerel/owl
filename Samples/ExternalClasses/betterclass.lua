@@ -1,1 +1,0 @@
-/Users/jonbeebe/Development/Projects/BetterClass/betterclass.lua

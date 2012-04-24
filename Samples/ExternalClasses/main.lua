@@ -3,10 +3,10 @@ display.setDefault( "background", 255 )
 
 -----------------------------------------------------------------------------------------
 
-local class = require "betterclass"
+local owl = require "owl"
 require "class_puppy"
 
-local puppy = class.instance{ from="PuppyClass" }
+local puppy = owl.instance{ from="Puppy" }
 puppy:translate( display.contentCenterX*0.5, display.contentCenterY*0.5 )
 
 -- modify puppy properties

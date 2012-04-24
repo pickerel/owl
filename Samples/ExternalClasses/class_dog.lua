@@ -1,17 +1,17 @@
-local class = require "betterclass"
+local owl = require "owl"
 
-local DogClass = class.new{ name="DogClass", image="dog.png", width=100, height=100 }
+local Dog = owl.new{ name="Dog", image="dog.png", width=100, height=100 }
 
 -- private properties
-DogClass.private.ageMultiplier = 7
+Dog.private.ageMultiplier = 7
 
 -- public properties
-DogClass.name = "Unnamed Dog"
-DogClass.age = 5	-- in human years
+Dog.name = "Unnamed Dog"
+Dog.age = 5	-- in human years
 
 -- public methods
-function DogClass:ageInDogYears()
-	return self.age * DogClass.private.ageMultiplier
+function Dog:ageInDogYears()
+	return self.age * Dog.private.ageMultiplier
 end
 
-return DogClass
+return Dog

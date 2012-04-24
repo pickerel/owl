@@ -1,7 +1,7 @@
-BetterClass
-===========
+OWL
+===
 
-Object-oriented programming in Lua for Corona SDK.
+**Objects-With-Lua:** Object-oriented programming in Lua for Corona SDK.
 
 * **Module:** betterclass.lua
 * **Version:** 1.0.0
@@ -11,6 +11,7 @@ Object-oriented programming in Lua for Corona SDK.
 
 ### Features
 
+* Constructor/initializers
 * Classes for display objects, as well as non-display objects.
 * Fast creation of new object instances from specified parent class.
 * Create metamethods for objects easily with property callbacks.
