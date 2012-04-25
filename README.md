@@ -24,7 +24,7 @@ Easy object-oriented programming in Lua with Corona SDK. Supports display object
 ### Important Notes
 
 * Object instances have two reserved properties (cannot read or write): **private** and **display_obj**
-* Object instances have three read-only properties: **class_ame**, **super_class**, and **callback_properties**
+* Object instances have three read-only properties: **class_name**, **super_class**, and **callback_properties**
 
 
 ### Usage
