@@ -120,7 +120,7 @@ Here's an example of a per-class constructor:
 
 	local cat = owl.instance{ from="Animal", id="Mufasa", params={ var1="sample" } }
 
-	-- output: New instance of Animal created: Mufasa
+	-- OUTPUT: New instance of Animal created: Mufasa
 
 ## Defined Per-Instance
 
@@ -140,5 +140,43 @@ You can specify a per-instance constructor when you create the instance (via an 
 
 ## Methods
 
-The following methods can be called on both class objects, as well as object instances of class objects
+The following methods can be called on both class objects, as well as object instances of class objects.
 
+### is_a( class_or_class_name )
+
+This method will check if an object is of class **class_or_class_name** (which can be a string or an actual class object as returned from owl.class()) and return true or false. All levels of inheritance are checked, so for example, if you have a Mammal class, and an Animal class that is sub-classed from Mammal, and then you create a "bird" object. If you were to call bird_obj:is_a( "Mammal" ) it would return true.
+
+	local MammalClass = owl.class{ name="Mammal" }
+	local AnimalClass = owl.class{ name="Animal", from=MammalClass }
+
+	local bird = owl.class{ from="Animal" }
+	bird:is_a( MammalClass )  -- true
+	bird:is_a( "Mammal" )  -- true
+	bird:is_a( "Animal" )  -- true
+
+	AnimalClass:is_a( "Mammal" )  -- true
+
+### kind_of( class_or_class_name )
+
+This is the same as the is_a(), but is available for convenience.
+
+### instance_of( class_or_class_name )
+
+This function is similar to is_a()/kind_of() but it only checks the actual class of the object (super classes are not checked).
+
+	local MammalClass = owl.class{ name="Mammal" }
+	local AnimalClass = owl.class{ name="Animal", from=MammalClass }
+
+	local bird = owl.class{ from="Animal" }
+	bird:instance_of( MammalClass )  -- false
+	bird:instance_of( AnimalClass )  -- true
+
+### add_property_callback( property_name, listener )
+
+### remove_property_callback( property_name )
+
+These two functions make it easy to create basic metamethods which can intercept property updates of instance objects. Please see the **EasyMetamethods** sample for usage and other information (pay close attention to the notes in the comments as well).
+
+----------
+
+### by [Jonathan Beebe (http://jonbeebe.net)](http://jonbeebe.net)
