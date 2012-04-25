@@ -8,7 +8,7 @@ Reference
 
 ### owl.class{ name *[, from, image, baseDir, width, height, custom, private ]* }
 
-Creates a new class object. Before you can have objects (known as instances), you must first create a class which can be though of as sort of a "model" for all instances created from the class. If you're creating a display object class, although you're specifying the display object's details in the class (image, etc.), no display object is actually created until you go to create a new object instance from the class (using owl.instance()).
+Creates and returns a new class object. Before you can have objects (known as instances), you must first create a class object which can be thought of as a "model" for all object instances created from the class. If you're creating a display object class (for use with Corona SDK projects), although you're specifying the display object's details in the class (image, etc.), no display object is actually created until you create a new object instance from the class (using owl.instance()).
 
 Below is a listing of all valid parameters for owl.class():
 
