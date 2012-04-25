@@ -57,6 +57,8 @@ This is an optional table or variable that you want to be automatically included
 	AnimalClass.private.var1 = "sample"
 
 
+----------
+
 ### owl.instance{ from [, id, init, params ] }
 
 #### from
