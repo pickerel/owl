@@ -89,3 +89,47 @@ This is an optional table that will be passed to the constructor (either the fun
 
 	local baboon_obj = owl.instance{ from="Baboon", init=custom_init, params={ msg="Hello world." } }
 
+----------
+
+## Constructors
+
+You may have per-class constructors, per-instance constructors, or both. A constructor is simply a function that is called whenever an object instance is created. You can pass whatever custom parameters you want to the constructor function. Please see the **Constructors** sample to get a better understanding of how to use the concept in a real project.
+
+## Class Constructor
+
+Class constructors can be defined by adding an init() method to the class object. Whenever an object instance is created from the class, the init() function will be called.
+
+When you define a class constructor, all object instances created from the class will use the class constructor by default (unless it is overrided on a per-instance basis).
+
+Here's an example of a per-class constructor:
+
+	local AnimalClass = owl.class{ name="Animal" }
+
+	-- constructor (called by default every time a new "Animal" instance is created)
+	function AnimalClass:init( params )
+	    local params = params or {}
+
+	    local name = self.id or "Unnamed"  -- 'self' is a reference to the instance object
+
+	    print( "New instance of Animal created: " .. name )
+	    print( "Here's a variable passed through params: " .. tostring(params.var1) )
+	end
+
+	local cat = owl.instance{ from="Animal", id="Mufasa", params={ var1="sample" } }
+
+	-- output: New instance of Animal created: Mufasa
+
+## Instance Constructor
+
+Instance constructors can be defined on a per-instance basis. If an instance constructor exists, it will be called. If not, the class constructor will be called instead (if it has been defined).
+
+You can specify a per-instance constructor when you create the instance (via an init parameter):
+
+	local function instance_constructor( params )
+	    local name = self.id or "Unnamed"
+
+	    print( "New instance created: " .. name )
+	end
+
+	local cat = owl.instance{ from="Animal", id="Mufasa", params={ var1="sample" } }
+
