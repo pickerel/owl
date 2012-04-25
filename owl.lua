@@ -24,7 +24,7 @@ local function get_display_object( params )
 	local width = params.width
 	local height = params.height
 	local base_dir = params.baseDir or system.ResourceDirectory
-	local create_object = params.createFunction  -- should be a function or closure that returns a display object
+	local create_object = params.custom  -- should be a function that returns a display object
 
 	local obj
 	if create_object and type(create_object) == "function" then
