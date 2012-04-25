@@ -2,12 +2,15 @@
 --
 -- owl.lua (Objects with Lua)
 --
+-- Version: 1.0.0
+--
 -- Copyright (C) Jonathan Beebe (http://jonbeebe.net)
 --
 -----------------------------------------------------------------------------------------
 
 local class = {}
-local registered = {}	-- where all class definitions are stored
+local registered = {}	-- stores all class definitions
+
 
 --
 --
@@ -42,8 +45,8 @@ local function extendClass( name, class )
 
 	local c =
 	{
-		className=name,
-		superClass=class,
+		class_name=name,
+		super_class=class,
 		private=setmetatable( {}, private_mt )
 	}
 
@@ -62,39 +65,39 @@ end
 --
 --
 
--- checks to see if object "is a" class (name or class object can be passed) -- superclasses are also checked
-local function is_a( self, className )
-	if not className then return false; end
-	if type(className) == "table" then className = className.className; end
+-- checks to see if object "is a" class (name or class object can be passed) -- super_classes are also checked
+local function is_a( self, class_name )
+	if not class_name then return false; end
+	if type(class_name) == "table" then class_name = class_name.class_name; end
 	local found_match
 
 	while found_match == nil do
-		if self.className == className then
+		if self.class_name == class_name then
 			found_match = true
-		elseif not self.superClass then
+		elseif not self.super_class then
 			found_match = false
 		else
-			found_match = is_a( self.superClass, className )
+			found_match = is_a( self.super_class, class_name )
 		end
 	end
 	return found_match
 end
 
--- checks to see if object is an instance of specific class (superclasses are not checked)
-local function instance_of( self, className )
-	if not className then return false; end
-	if type(className) == "table" then className = className.className; end
-	return self.className == className
+-- checks to see if object is an instance of specific class (super_classes are not checked)
+local function instance_of( self, class_name )
+	if not class_name then return false; end
+	if type(class_name) == "table" then class_name = class_name.class_name; end
+	return self.class_name == class_name
 end
 
-local function addPropertyCallback( self, propertyName, callback )
+local function add_property_callback( self, property_name, callback )
 	if not callback then return; end
-	self.callbackProperties[propertyName] = callback
+	self.callback_properties[property_name] = callback
 end
 
-local function removePropertyCallback( self, propertyName )
-	if not propertyName then return; end
-	self.callbackProperties[propertyName] = nil
+local function remove_property_callback( self, property_name )
+	if not property_name then return; end
+	self.callback_properties[property_name] = nil
 end
 
 
@@ -104,7 +107,7 @@ end
 --
 --
 
-function class.new( params )
+function class.class( params )
 	-- required params: name, createFunction or image or (image and width and height)
 	local params = params or {}
 
@@ -149,7 +152,7 @@ function class.new( params )
 	else
 		local proxy = {}
 		c = {}
-		c.className = name
+		c.class_name = name
 
 		local c_mt = {
 			__index = function(t,k)
@@ -184,8 +187,8 @@ function class.new( params )
 	c.is_a = is_a
 	c.kind_of = is_a
 	c.instance_of = instance_of
-	c.addPropertyCallback = addPropertyCallback
-	c.removePropertyCallback = removePropertyCallback
+	c.add_property_callback = add_property_callback
+	c.remove_property_callback = remove_property_callback
 
 	-- register the class and return it
 	registered[name] = c
@@ -197,6 +200,7 @@ function class.remove( name )
 	registered[name] = nil
 end
 
+-- creates a new instance of a specific class
 function class.instance( params )
 	local params = params or {}
 
@@ -233,7 +237,7 @@ function class.instance( params )
 
 	-- set up object properties
 	obj.id = id
-	obj.callbackProperties = {}  -- contains properties and corresponding callbacks (called on update)
+	obj.callback_properties = {}  -- contains properties and corresponding callbacks (called on update)
 
 	-- proxy and metatable setup
 	local _t = obj
@@ -256,9 +260,9 @@ function class.instance( params )
 		end,
 
 		__newindex = function(tb,k,v)
-			if k == "superClass" or k == "className" or k == "callbackProperties" then return; end
+			if k == "super_class" or k == "class_name" or k == "callback_properties" then return; end
 
-			if _t.callbackProperties[k] and type(_t.callbackProperties[k]) == "function" then
+			if _t.callback_properties[k] and type(_t.callback_properties[k]) == "function" then
 				local event =
 				{
 					name="propertyUpdate",
@@ -266,7 +270,7 @@ function class.instance( params )
 					key=k,
 					value=v
 				}
-				local callback = _t.callbackProperties[k]
+				local callback = _t.callback_properties[k]
 				callback( _t, event )
 			else
 				_t[k] = v

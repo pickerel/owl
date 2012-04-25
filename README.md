@@ -1,7 +1,7 @@
 Objects with Lua (owl)
 ======================
 
-Easy object-oriented programming in Lua. Compatible with Corona SDK display objects, as well as Lua-only scripts.
+Easy object-oriented programming in Lua with Corona SDK. Supports display objects, and can also be used with non-Corona Lua scripts.
 
 * **Module:** owl.lua
 * **Version:** 1.0.0
@@ -9,24 +9,33 @@ Easy object-oriented programming in Lua. Compatible with Corona SDK display obje
 * **Author:** Jonathan Beebe
 * **Website:** [http://jonbeebe.net]()
 
+
 ### Features
 
 * Constructor/initializers via init() method of class (or custom per-instance callbacks)
 * Classes for display objects, as well as non-display objects.
-* Fast creation of new object instances from specified parent class.ß
+* Fast creation of new object instances from specified parent class.
 * Create metamethods for objects easily with property callbacks.
 * Familiar OOP methods: is_a(), kind_of(), instance_of()
 * Private class data via .private table of class.
-* Multi-level inheritance.
+* Multi-level inheritance (to top-most parent class).
+
 
 ### Important Notes
 
 * Object instances have two reserved properties (cannot read or write): **private** and **display_obj**
-* Object instances have three read-only properties: **className**, **superClass**, and **callbackProperties**
+* Object instances have three read-only properties: **class_ame**, **super_class**, and **callback_properties**
+
 
 ### Usage
 
-For examples of usage from basic to advanced, see included sample projects (which should run as-is in the Corona Simulator). More coming soon.
+For examples of usage from basic to advanced, see included sample projects. And although owl.lua can be used with non-Corona SDK Lua scripts, the samples below are Corona SDK projects that should be run in the Corona Simulator. I recommend you study all of the samples (and corresponding Terminal output), and play around with them to gain a more complete understanding of all the features of owl.
+
+* Samples/**ExternalClasses** - shows how to separate classes into external modules.
+* Samples/**PrivateClassData** - demonstrates how the class 'private' table works.
+* Samples/**ClassMethods** - shows how to define and use class methods.
+* Samples/**EasyMetamethods** - shows how to use property callbacks to do creative things.
+* Samples/**Constructors** - shows how to use class constructors and per-instance constructors.
 
 
 ### MIT License

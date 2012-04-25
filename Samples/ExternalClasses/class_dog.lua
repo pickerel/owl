@@ -1,6 +1,6 @@
 local owl = require "owl"
 
-local Dog = owl.new{ name="Dog", image="dog.png", width=100, height=100 }
+local Dog = owl.class{ name="Dog", image="dog.png", width=100, height=100 }
 
 -- private data that needs to be accessed by this class and sub-classes
 Dog.private.age_multiplier = 7
@@ -11,11 +11,11 @@ Dog.age = 5	-- in human years
 
 -- constructor
 function Dog:init( params )
-	print( "Instance of " .. self.className .. " created." )
+	print( "Instance of " .. self.class_name .. " created." )
 end
 
 -- public methods
-function Dog:ageInDogYears()
+function Dog:age_in_dog_years()
 	return self.age * Dog.private.ageMultiplier
 end
 
