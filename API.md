@@ -1,5 +1,6 @@
-owl.lua API Reference
-=====================
+API Reference
+=============
+## owl.lua
 
 ----------
 
@@ -61,7 +62,7 @@ This is an optional table or variable that you want to be automatically included
 
 ----------
 
-### owl.instance{ from [, id, init, params ] }
+### owl.instance{ from *[, id, init, params ]* }
 
 #### from
 This is a **required** string (or class object, as returned from owl.class) that represents the "model" that will be used to construct the actual object instance. This is the class that the object will be based on (the "class_name" of the object).
