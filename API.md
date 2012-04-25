@@ -1,9 +1,11 @@
 owl.lua API Reference
 =====================
 
-## API Functions
+----------
 
-### owl.class{ name [, from, image, baseDir, width, height, custom, private ] }
+## Library Functions
+
+### owl.class{ name *[, from, image, baseDir, width, height, custom, private ]* }
 
 Creates a new class object. Before you can have objects (known as instances), you must first create a class which can be though of as sort of a "model" for all instances created from the class. If you're creating a display object class, although you're specifying the display object's details in the class (image, etc.), no display object is actually created until you go to create a new object instance from the class (using owl.instance()).
 
@@ -23,19 +25,19 @@ This is an optional string (or class object, as returned from owl.class) that is
 	local BaboonClass = owl.class{ name="Baboon" from=AnimalClass }
 
 #### image
-**Corona SDK/optional**. This represents the image (relative to baseDir parameter or system.ResourceDirectory) that a display object should be created from. If no width and height parameter is specified, display.newImage() will be used. Otherwise, display.newImageRect() (which supports dynamic content scaling) will be used instead.
+**Corona SDK (optional)**. This represents the image (relative to baseDir parameter or system.ResourceDirectory) that a display object should be created from. If no width and height parameter is specified, display.newImage() will be used. Otherwise, display.newImageRect() (which supports dynamic content scaling) will be used instead.
 
 #### baseDir
-**Corona SDK/optional**. If an image is specified, this will be the base directory at which the image file is located. Default is system.ResourceDirectory.
+**Corona SDK (optional)**. If an image is specified, this will be the base directory at which the image file is located. Default is system.ResourceDirectory.
 
 #### width
-**Corona SDK/optional**. This is the width of the image (if specified) that corresponds to the 'width' argument in display.newImageRect().
+**Corona SDK (optional)**. This is the width of the image (if specified) that corresponds to the 'width' argument in display.newImageRect().
 
 #### height
 **Corona SDK/optional**. This is the height of the image (if specified) that corresponds to the 'height' argument in display.newImageRect().
 
 #### custom
-**Corona SDK/optional**. If you want this to be a display object class but do not want to use a static image (as returned from display.newImage() and display.newImageRect()), this should be a reference to a function that **returns the display object you want to represent this class** (it is very important the function you specify returns a display object if you use this parameter!). This is useful if you need the class to produce a sprite, rect, circle, text, etc. display objects. If this parameter is used, you should not specify image, baseDir, width, or height parameters.
+**Corona SDK (optional)**. If you want this to be a display object class but do not want to use a static image (as returned from display.newImage() and display.newImageRect()), this should be a reference to a function that **returns the display object you want to represent this class** (it is very important the function you specify returns a display object if you use this parameter!). This is useful if you need the class to produce a sprite, rect, circle, text, etc. display objects. If this parameter is used, you should not specify image, baseDir, width, or height parameters.
 
 	local function create_rect_object()
 		local rect = display.newRect( 0, 0, 250, 250 )
@@ -93,11 +95,11 @@ This is an optional table that will be passed to the constructor (either the fun
 
 ## Constructors
 
-You may have per-class constructors, per-instance constructors, or both. A constructor is simply a function that is called whenever an object instance is created. You can pass whatever custom parameters you want to the constructor function. Please see the **Constructors** sample to get a better understanding of how to use the concept in a real project.
+You may have per-class constructors, per-instance constructors, or both. A constructor is simply a function that is called whenever an object instance is created. You can pass whatever custom parameters you want to the constructor function. Please see the **Constructors** sample to get a better understanding of how to use constructors in a real project.
 
-## Class Constructor
+## Defined in the Class
 
-Class constructors can be defined by adding an init() method to the class object. Whenever an object instance is created from the class, the init() function will be called.
+Constructors are most commonly defined by adding an init() method to the class object. Whenever an object instance is created from the class, the init() function will be called.
 
 When you define a class constructor, all object instances created from the class will use the class constructor by default (unless it is overrided on a per-instance basis).
 
@@ -119,9 +121,9 @@ Here's an example of a per-class constructor:
 
 	-- output: New instance of Animal created: Mufasa
 
-## Instance Constructor
+## Defined Per-Instance
 
-Instance constructors can be defined on a per-instance basis. If an instance constructor exists, it will be called. If not, the class constructor will be called instead (if it has been defined).
+A constructor can also be defined on a per-instance basis. If an instance constructor exists, it will be called. If not, the class constructor will be called instead (if it has been defined).
 
 You can specify a per-instance constructor when you create the instance (via an init parameter):
 
@@ -132,4 +134,10 @@ You can specify a per-instance constructor when you create the instance (via an 
 	end
 
 	local cat = owl.instance{ from="Animal", id="Mufasa", params={ var1="sample" } }
+
+----------
+
+## Methods
+
+The following methods can be called on both class objects, as well as object instances of class objects
 
