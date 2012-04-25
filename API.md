@@ -81,9 +81,9 @@ This is an optional reference to a function that will serve as the "constructor"
 #### params
 This is an optional table that will be passed to the constructor (either the function specified in the init parameter, or the class constructor if it exists). It can contain anything you want.
 
-	local function custom_constrcutor( params )
+	local function custom_init( params )
 	    print( params.msg )
 	end
 
-	local baboon_obj = owl.instance{ from="Baboon", init=custom_constructor, params={ msg="Hello world." } }
+	local baboon_obj = owl.instance{ from="Baboon", init=custom_init, params={ msg="Hello world." } }
 
