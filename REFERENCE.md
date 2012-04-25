@@ -172,10 +172,9 @@ This function is similar to is_a()/kind_of() but it only checks the actual class
 	bird:instance_of( AnimalClass )  -- true
 
 ### add_property_callback( property_name, listener )
-
 ### remove_property_callback( property_name )
 
-These two functions make it easy to create basic metamethods which can intercept property updates of instance objects. Please see the **EasyMetamethods** sample for usage and other information (pay close attention to the notes in the comments as well).
+These two methods make it easy to have basic "metamethod" functionality which can intercept property updates of instance objects. Please see the **EasyMetamethods** sample for usage and other information (pay close attention to the notes in the comments as well).
 
 ----------
 
