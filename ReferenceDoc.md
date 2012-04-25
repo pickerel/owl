@@ -1,5 +1,5 @@
-API Reference
-=============
+Reference Documentation
+=======================
 ## owl.lua
 
 ----------
