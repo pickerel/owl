@@ -1,7 +1,7 @@
-API Reference for owl.lua
-=========================
+owl.lua API Reference
+=====================
 
-## Methods
+## API Functions
 
 ### owl.class{ name [, from, image, baseDir, width, height, createFunction, private ] }
 
@@ -19,11 +19,11 @@ This is an optional string (or class object, as returned from owl.class) that is
 	
 	local AnimalClass = owl.class{ name="Animal" }
 	local BaboonClass = owl.class{ name="Baboon" from="Animal" }
-	--or
+	-- or
 	local BaboonClass = owl.class{ name="Baboon" from=AnimalClass }
 
 #### image
-**Corona SDK/optional**. This represents the image (relative to baseDir parameter or system.ResourceDirectory) that a display object should be created from. If no width and height parameter is specified, display.newImage() will be used. Otherwise, display.newImageRect() will be used.
+**Corona SDK/optional**. This represents the image (relative to baseDir parameter or system.ResourceDirectory) that a display object should be created from. If no width and height parameter is specified, display.newImage() will be used. Otherwise, display.newImageRect() (which supports dynamic content scaling) will be used instead.
 
 #### baseDir
 **Corona SDK/optional**. If an image is specified, this will be the base directory at which the image file is located. Default is system.ResourceDirectory.
@@ -51,8 +51,39 @@ This is an optional table or variable that you want to be automatically included
 
 	local AnimalClass = owl.class{ name="Animal", private={ var1="sample" } }
 
-	-- is the same as ...
+	-- is the same as --
 
 	local AnimalClass = owl.class{ name="Animal" }
 	AnimalClass.private.var1 = "sample"
+
+
+### owl.instance{ from [, id, init, params ] }
+
+#### from
+This is a **required** string (or class object, as returned from owl.class) that represents the "model" that will be used to construct the actual object instance. This is the class that the object will be based on (the "class_name" of the object).
+
+	local BaboonClass = owl.class{ name="Baboon", image="baboon.png" }
+	local baboon_obj = owl.instance{ from=BaboonClass }
+	baboon_obj:translate( 100, 100 )
+
+#### id
+This is an optional string that is a convenience if you need to identify the object. It can be read/write later on via the .id property of the object.
+
+#### init
+This is an optional reference to a function that will serve as the "constructor" for this particular object instance that will be called immediately after the object has been created. If this parameter is not specified, the class constructor (Class:init()) will be called instead (if it exists).
+
+	local function custom_constructor( params )
+	    print( "The object was created!" )
+	end
+
+	local baboon_obj = owl.instance{ from="Baboon", init=custom_constructor }
+
+#### params
+This is an optional table that will be passed to the constructor (either the function specified in the init parameter, or the class constructor if it exists). It can contain anything you want.
+
+	local function custom_constrcutor( params )
+	    print( params.msg )
+	end
+
+	local baboon_obj = owl.instance{ from="Baboon", init=custom_constructor, params={ msg="Hello world." } }
 
