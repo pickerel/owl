@@ -21,9 +21,9 @@ This is a **required** string that represents a _unique_ name for the class. Ex.
 This is an optional string (or class object, as returned from owl.class) that is the parent class that this class should be sub-classed from. If this parameter is not specified, the class will be a top-level class.
 	
 	local AnimalClass = owl.class{ name="Animal" }
-	local BaboonClass = owl.class{ name="Baboon" from="Animal" }
+	local BaboonClass = owl.class{ name="Baboon", from="Animal" }
 	-- or
-	local BaboonClass = owl.class{ name="Baboon" from=AnimalClass }
+	local BaboonClass = owl.class{ name="Baboon", from=AnimalClass }
 
 #### image
 **Corona SDK (optional)**. This represents the image (relative to baseDir parameter or system.ResourceDirectory) that a display object should be created from. If no width and height parameter is specified, display.newImage() will be used. Otherwise, display.newImageRect() (which supports dynamic content scaling) will be used instead.
