@@ -100,11 +100,9 @@ You may have per-class constructors, per-instance constructors, or both. A const
 
 ## Defined in the Class
 
-Constructors are most commonly defined by adding an init() method to the class object. Whenever an object instance is created from the class, the init() function will be called.
+Constructors are most commonly defined by adding an init() method to the class object. Whenever an object instance is created from the class, the init() function will be called. When you define a class constructor, all object instances created from the class will use the class constructor by default (unless it is overrided on a per-instance basis).
 
-When you define a class constructor, all object instances created from the class will use the class constructor by default (unless it is overrided on a per-instance basis).
-
-Here's an example of a per-class constructor:
+Here's an example of a constructor that's defined in the class object:
 
 	local AnimalClass = owl.class{ name="Animal" }
 
