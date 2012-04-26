@@ -1,4 +1,4 @@
-Objects with Lua (owl)
+Objects with Lua (OWL)
 ======================
 
 Easy object-oriented programming in Lua with Corona SDK. Supports display objects, and can also be used with non-Corona Lua scripts.
@@ -29,7 +29,7 @@ Easy object-oriented programming in Lua with Corona SDK. Supports display object
 
 ### Usage
 
-For examples of usage from basic to advanced, see included sample projects. And although owl.lua can be used with non-Corona SDK Lua scripts, the samples below are Corona SDK projects that should be run in the Corona Simulator. I recommend you study all of the samples (and corresponding Terminal output), and play around with them to gain a more complete understanding of all the features of owl.
+For examples of usage from basic to advanced, see included sample projects. And although OWL.lua can be used with non-Corona SDK Lua scripts, the samples below are Corona SDK projects that should be run in the Corona Simulator. I recommend you study all of the samples (and corresponding Terminal output), and play around with them to gain a more complete understanding of all the features of OWL.
 
 * Samples/**ExternalClasses** - shows how to separate classes into external modules.
 * Samples/**PrivateClassData** - demonstrates how the class 'private' table works.
