@@ -4,7 +4,7 @@ Objects with Lua (OWL)
 Easy object-oriented programming in Lua with Corona SDK. Supports display objects, and can also be used with non-Corona Lua scripts.
 
 * **Module:** owl.lua
-* **Version:** 1.0.0
+* **Version:** 1.0.1
 * **License:** MIT (see below)
 * **Author:** Jonathan Beebe
 * **Website:** [http://jonbeebe.net]()

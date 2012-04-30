@@ -2,7 +2,7 @@
 --
 -- owl.lua (Objects with Lua)
 --
--- Version: 1.0.0
+-- Version: 1.0.1
 --
 -- Copyright (C) Jonathan Beebe (http://jonbeebe.net)
 --
