@@ -33,7 +33,7 @@ Easy object-oriented programming in Lua with Corona SDK. Supports display object
 For examples of usage from basic to advanced, see included sample projects. And although OWL.lua can be used with non-Corona SDK Lua scripts, the samples below are Corona SDK projects that should be run in the Corona Simulator. I recommend you study all of the samples (and corresponding Terminal output), and play around with them to gain a more complete understanding of all the features of OWL.
 
 * Samples/**ExternalClasses** - shows how to separate classes into external modules.
-* Samples/**PrivateClassData** - demonstrates how the class 'private' table works.
+* Samples/**PrivateClassData** - demonstrates how the class and instance 'private' table works.
 * Samples/**ClassMethods** - shows how to define and use class methods.
 * Samples/**EasyMetamethods** - shows how to use property callbacks to do creative things.
 * Samples/**Constructors** - shows how to use class constructors and per-instance constructors.
