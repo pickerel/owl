@@ -238,6 +238,7 @@ function class.instance( params )
 	-- set up object properties
 	obj.id = id
 	obj.callback_properties = {}  -- contains properties and corresponding callbacks (called on update)
+	obj.private = {}
 
 	-- proxy and metatable setup
 	local _t = obj
@@ -246,7 +247,10 @@ function class.instance( params )
 	local mt =
 	{
 		__index = function(tb,k)
-			if k == "private" or k == "display_obj" then return; end
+			if k == "display_obj" then return;
+			elseif k == "private" then
+				return rawget( _t, "private" )
+			end
 
 			if _t[k] then
 				if type(_t[k]) == 'function' then

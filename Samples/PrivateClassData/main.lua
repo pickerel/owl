@@ -18,6 +18,8 @@ Dog.hello_world = "Hello World!"
 local black_dog = owl.instance{ from=Dog }	-- from accepts class object (table) or name (string)
 black_dog:translate( display.contentCenterX, display.contentCenterY )
 
+black_dog.private.instance_var = "[private instance data]"
+
 -- See terminal for explanation of private vs. public class data, outlined below:
 print( "\n" .. "Instances DO NOT inherit the private table from class:" )
 	print( "\t" .. "CLASS:     Dog.private = " .. tostring(Dog.private) )
@@ -29,7 +31,10 @@ print( "\n" .. "But they DO inherit public properties and methods:" )
 	print( "\t" .. "CLASS:     Dog.hello_world = \"" .. Dog.hello_world .. "\"" )
 	print( "\t" .. "INSTANCE:  black_dog.hello_world = \"" .. black_dog.hello_world .. "\"" )
 
-print( "\n" .. "Instances can also override any class properties and methods:" )
+print( "\n" .. "Instances can also have their own private data (separate from class):" )
+	print( "\t" .. "INSTANCE: black_dog.private.instance_var = \"" .. black_dog.private.instance_var .. "\"" )
+
+print( "\n" .. "...and override any class properties and methods:" )
 	black_dog.hello_world = "is now different"
 	print( "\t" .. "CLASS:     Dog.hello_world = \"" .. Dog.hello_world .. "\"" )
 	print( "\t" .. "INSTANCE:  black_dog.hello_world = \"" .. black_dog.hello_world .. "\"" )
