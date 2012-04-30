@@ -39,7 +39,7 @@ local function get_display_object( params )
 	return obj
 end
 
-local function extendClass( name, class )
+local function extend_class( name, class )
 	local class_mt = { __index = class }
 	local private_mt = { __index = class.private }
 
@@ -136,7 +136,7 @@ function class.class( params )
 	-- create brand new class or extend from base class (if specified)
 	local c
 	if parent_class then
-		c = extendClass( name, parent_class )
+		c = extend_class( name, parent_class )
 		
 		-- instances may optionally have different display object properties
 		if image or (createFunction and type(createFunction) == "function") then
