@@ -11,6 +11,9 @@
 local class = {}
 local registered = {}	-- stores all class definitions
 
+-- for non-Corona SDK compatibility
+local system = system
+if not system then system = {}; end
 
 --
 --
