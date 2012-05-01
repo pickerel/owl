@@ -246,6 +246,7 @@ function class.instance( params )
 	-- proxy and metatable setup
 	local _t = obj
 	local t = {}
+	t.raw = obj
 
 	local mt =
 	{
@@ -253,6 +254,8 @@ function class.instance( params )
 			if k == "display_obj" then return;
 			elseif k == "private" then
 				return rawget( _t, "private" )
+			elseif k == "raw" then
+				return rawget( t, "raw" )
 			end
 
 			if _t[k] then
