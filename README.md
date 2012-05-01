@@ -24,8 +24,9 @@ Easy object-oriented programming in Lua with Corona SDK. Supports display object
 ### Important Notes
 
 * Object instances have a reserved property that you cannot read or write to: **display_obj**
-* Object instances have three read-only properties: **class_name**, **super_class**, and **callback_properties**
+* Object instances have four read-only properties: **class_name**, **super_class**, **raw**, and **callback_properties**
 * Classes and instances each have their own **private** table (*e.g. object.private*) which does not inherit any data.
+* [Corona SDK] Display object instances have a **raw** property that can be used to access the display object directly (no inheritance, etc.). This raw property must be used when another function takes a display object as a parameter. For example, to use group:insert(), you would do: group:insert( obj.raw )
 
 
 ### Usage

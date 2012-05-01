@@ -94,6 +94,23 @@ This is an optional table that will be passed to the constructor (either the fun
 
 ----------
 
+## Display Objects
+
+For those using this library with the Corona SDK, you'll find that there are some functions that take display objects as a parameter, such as *group:insert()*, that will not accept OWL class instances. To get the "real" display object associated with an instance, you must use the **raw** property. For example:
+
+	local group = display.newGroup()
+	local BaboonClass = owl.class{ name="Baboon", image="baboon.png" }
+	local baboon_obj = owl.instance{ from=BaboonClass }
+
+	group:insert( baboon_obj )  -- WRONG: will error
+	
+	-- use this instead:
+	group:insert( baboon_obj.raw )
+
+The **raw** property can be used whenever you want a reference to the actual object instance without any OWL features (such as inheritance).
+
+----------
+
 ## Constructors
 
 You may have per-class constructors, per-instance constructors, or both. A constructor is simply a function that is called whenever an object instance is created. You can pass whatever custom parameters you want to the constructor function. Please see the **Constructors** sample to get a better understanding of how to use constructors in a real project.
